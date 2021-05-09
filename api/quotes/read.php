@@ -8,7 +8,7 @@
 
     // Instantiante DB & Connect
     $database = new Database();
-    $db = $database -> getDB();
+    $db = $database -> connect();
 
     // Instantiante Quote
     $quote = new Quotes($db);
