@@ -3,8 +3,8 @@
     header('Access-Control-Allow-Origin: *');
     header('Content-Type: application/json');
 
-    require('../../config/Database.php')
-    require('../../model/Quotes.php')
+    require('../../config/Database.php');
+    require('../../model/Quotes.php');
 
     // Instantiante DB & Connect
     $database = new Database();
