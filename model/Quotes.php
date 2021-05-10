@@ -28,7 +28,7 @@ class Quotes {
         from '. $this->table . ' q
         left join gic4xphvg8gbi3j6.categories c on q.categoryId = c.id
         left join gic4xphvg8gbi3j6.authors a on q.authorId = a.id
-                    '
+                    ';
         // Prepare statement
         $stmt = $this->conn->prepare($query);
 

@@ -8,15 +8,16 @@
 
     // Instantiante DB & Connect
     $database = new Database();
-    $db = $database -> connect();
+    $db = $database->connect();
 
     // Instantiante Quote
     $quote = new Quotes($db);
-    // Get Row Count
-    $num = $result->rowCount();
 
     // Quote query
     $result = $quote->read();
+
+    // Get Row Count
+    $num = $result->rowCount();
 
     //Check if any Quotes
 
