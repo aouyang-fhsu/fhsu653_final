@@ -28,4 +28,4 @@
     );
 
     //Make JSON
-    print_r(json_encode($post_arr));
+    echo json_encode($quote_arr);
