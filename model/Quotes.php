@@ -20,7 +20,7 @@ class Quote {
         $this->conn = $db;
     }
 
-    // get posts
+    // get quote
     public function read(){
         $query = 'select 
             q.id as quote_id,
@@ -37,6 +37,36 @@ class Quote {
         $stmt->execute();
 
         return $stmt;
+    }
+
+    //get single quote
+    public function read_single(){
+        $query = 'select 
+        q.id as quote_id,
+        q.quote,
+        a.author as author,
+        c.category as category
+    from ' . $this->table . ' q
+    left join ' . $this->table2 . ' c on q.categoryId = c.id
+    left join ' . $this->table3 . ' a on q.authorId = a.id
+    where q.id = ?
+    limit 0,1';
+    // Prepare statement
+    $stmt = $this->conn->prepare($query);
+    
+    // Bind ID
+    $stmt->bindParam(1, $this->quote_id);
+
+    // execute
+    $stmt->execute();
+
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $this->quote_id = $row['quote_id'];
+    $this->quote = $row['quote'];
+    $this->author = $row['author'];
+    $this->category = $row['category'];
+
     }
 }
 
