@@ -11,7 +11,6 @@ class Quotes {
     public $quote;
     public $category_name;
     public $author_name;
-    public $;
 
     //Constructor with DB
 
@@ -20,13 +19,13 @@ class Quotes {
     }
 
     // get posts
-    public function quotes(){
+    public function read(){
         $query = 'select 
             q.id as quote_id,
             q.quote,
             a.author,
             c.category
-        from gic4xphvg8gbi3j6.quotes q
+        from '. $this->table . ' q
         left join gic4xphvg8gbi3j6.categories c on q.categoryId = c.id
         left join gic4xphvg8gbi3j6.authors a on q.authorId = a.id
                     '
@@ -39,3 +38,5 @@ class Quotes {
         return $stmt;
     }
 }
+
+?>
