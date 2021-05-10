@@ -49,8 +49,7 @@ class Quote {
     from ' . $this->table . ' q
     left join ' . $this->table2 . ' c on q.categoryId = c.id
     left join ' . $this->table3 . ' a on q.authorId = a.id
-    where q.id = ?
-    limit 0,1';
+    where q.id = ?';
     // Prepare statement
     $stmt = $this->conn->prepare($query);
     
