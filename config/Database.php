@@ -9,12 +9,14 @@ class Database {
         $hostname = $dbparts['host'];
         $username = $dbparts['username'];
         $password = $dbparts['password'];
-        $database = ltrim($dbparts['path'],'/');
+        $database = $dbparts['Database'];
+
+        $dsn = "mysql:host={$hostname};dbname={$database}";
             
         $this->conn = null;
 
         try {
-            $this->conn= new PDO("mysql:host=$hostname;         dbname=$database", $username, $password);
+            $this->conn = new PDO($dsn, $username, $password);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             echo "Connected successfully";
         } catch(PDOException $e){
