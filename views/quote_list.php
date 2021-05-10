@@ -1,55 +1,47 @@
-<?php include('header.php') ?>
-<nav>
-    <form action="." method="get" id="make_selection">
-        <section id="dropmenus" class="dropmenus">
-            <?php if ($makes) { ?>
-            <label>View All Authors</label>
-            <select name="authors">
-                <option value="0">View all Authors</option>
-                <?php foreach ($makes as $make) : ?>
-                    <?php if ($make['ID'] == $make_id) { ?>
-                <option value="<?= $make['ID']; ?>" selected>
-                    <?php } else { ?>
-                <option value="<?= $make['ID']; ?>">
-                    <?php } ?>                    
-                    <?= $make['Make']; ?>
-                </option>
-                <?php endforeach; ?>
-            </select>
-            <?php } ?>
+<?php
+    // Headers
+    include('views/header.php');
+    
+    // Get Author and Category data
+    require('config/Database.php');
+    require('model/Categories.php');
+    require('model/Authors.php');
 
+    // Instantiante DB & Connect
+    $database = new Database();
+    $db = $database->connect();
+    
+    // Instantiante Quote
+    $category = new Categories($db);
+    // Instantiante Quote
+    $author = new Authors($db);
+    // Categories query
+    $result = $category->read();
+    $cats = $result->fetchAll(); 
+    
+    // Author query
+    $result1 = $author->read();
+    $auths = $result1->fetchAll();
+?>
 
-            <?php if ($types) { ?>
-            <label>View all Categories</label>
-            <select name="type_id">
-                <option value="0">View all Categories</option>
-                <?php foreach ($types as $type) : ?>
-                    <?php if ($type['ID'] == $type_id) { ?>
-                <option value="<?= $type['ID']; ?>" selected>
-                    <?php } else { ?>
-                <option value="<?= $type['ID']; ?>">
-                    <?php } ?>                    
-                    <?= $type['Type']; ?>
-                </option>
-                <?php endforeach; ?>
-            </select>
-            <?php } ?>
+<form  action="." method="GET", id ="Filter">
+    <section id='dropmenus'>
+        <select name='categoryId'>
+            <option value="">View All Category</option>
+            <?php foreach ($cats as $cat) : ?>
+                <option value=<?php echo $cat['id']; ?>><?php echo $cat['category']; ?></option>
+            <?php endforeach; ?>
+        </select>
 
-            <?php if ($classes) { ?>
-            <label>Class:</label>
-            <select name="class_id">
-                <option value="0">View All Classes</option>
-                <?php foreach ($classes as $class) : ?>
-                <?php if ($class['ID'] == $class_id) { ?>
-                <option value="<?= $class['ID']; ?>" selected>
-                    <?php } else { ?>
-                <option value="<?= $class['ID']; ?>">
-                    <?php } ?>                    
-                    <?= $class['Class']; ?>
-                </option>
-                <?php endforeach; ?>
-            </select>
-            <?php } ?>
-        </section>
-    </form>
-</nav>
+        <select name='authorId'>
+            <option value="">View All Authors</option>
+            <?php foreach ($auths as $auth) : ?>
+                <option value=<?php echo $auth['id']; ?>><?php echo $auth['author']; ?></option>
+            <?php endforeach; ?>
+        </select>
+
+        <input type="submit" value="Submit" class="button blue button-slim">
+        <input id="resetVehicleListForm" type="reset" class="button red button-slim">
+    </section>
+</form>
+
