@@ -11,7 +11,7 @@
     $db = $database->connect();
 
     // Instantiante Quote
-    $quote = new Quotes($db);
+    $quote = new Quote($db);
 
     // Quote query
     $result = $quote->read();
@@ -28,15 +28,15 @@
         while($row = $result->fetch(PDO::FETCH_ASSOC)){
             extract($row);
 
-            $post_item = array(
-                'quote_id' => $quote_id;
-                'quote' => $quote;
-                'author' => $author_name;
-                'category' => $category_name;
+            $post_arr = array(
+                'quote_id' => $quote_id,
+                'quote' => $quote,
+                'author' => $author,
+                'category' => $category
             );
 
             //push to "data"
-            array_push($push_arr, $post_item);
+            //array_push($push_arr, $post_item);
         }
 
         //Turn to JSON and Output
