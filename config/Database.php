@@ -2,7 +2,7 @@
 class Database {
     private static $host = 'y5svr1t2r5xudqeq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com';     
     private static $username = 'dtlblzne3cfwivk8';
-    private static $db_name = 'gic4xphvg8gbi3j6'
+    private static $db_name = 'gic4xphvg8gbi3j6';
     private static $password = 'jozx23uetptqw1le';
     private static $conn;
     
