@@ -1,6 +1,6 @@
 <?php
 class Database {
-     //private $host = 'localhost';
+    //  private $host = 'localhost';
     //  private $db_name = 'quotesdb';
     //  private $username = 'root';
     //  private $password = '';

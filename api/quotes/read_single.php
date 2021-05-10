@@ -14,14 +14,15 @@
     $quote = new Quote($db);
 
     //Get ID
-    $quote->quote_id = isset($_GET['quote_id']) ? $_GET['quote_id'] :die();
+    $quote->id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+    //$quote->id = isset($_GET['id']) ? $_GET['id'] :die();
 
     //Get Quote
     $quote->read_single();
 
     //Create Array
     $quote_arr = array(
-        'quote_id' => $quote->quote_id,
+        'id' => $quote->id,
         'quote' => $quote->quote,
         'author' => $quote->author,
         'category' => $quote->category
